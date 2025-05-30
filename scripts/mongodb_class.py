@@ -45,7 +45,7 @@ class MongoDBHandler:
     def close(self):
         if self.client:
             self.client.close()
-            print("🔒 Conexão com MongoDB encerrada.")
+            print("Conexão com MongoDB encerrada.")
 
 # Script principal
 if __name__ == "__main__":
@@ -59,9 +59,9 @@ if __name__ == "__main__":
     handler.setup_database()
 
     data = handler.extract_api_data("https://labdados.com/produtos")
-    print(f"\n📦 Quantidade de dados extraídos: {len(data)}")
+    print(f"\nQuantidade de dados extraídos: {len(data)}")
 
     n_docs = handler.insert_data(data)
-    print(f"\n✅ Documentos inseridos na coleção: {n_docs}")
+    print(f"\nDocumentos inseridos na coleção: {n_docs}")
 
     handler.close()
