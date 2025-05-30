@@ -1,7 +1,8 @@
 
 # 📦 Projeto de Extração, Transformação e Armazenamento de Dados (MongoDB + MySQL)
 
-Este projeto tem como objetivo extrair dados de uma API pública, transformá-los e armazená-los em dois bancos de dados distintos: **MongoDB** e **MySQL**. Além disso, os dados processados são exportados em formato `.csv`.
+Este projeto tem como objetivo extrair dados de uma API pública, transformá-los e armazená-los em dois bancos de dados distintos: **MongoDB** e **MySQL**. 
+Dentro do meu banco NoSQL, coloquei os dados de forma nao estruturada para simular uma solicitacao de um DataScience por exemplo, em ter esses dados nao estruturados em algum ambiente.
 
 ## 🗂 Estrutura do Projeto
 
