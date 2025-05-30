@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 import os
 from dotenv import load_dotenv
+MONGODB_URI = os.getenv("MONGODB_URI")
 
 class TransformData:
 
@@ -64,3 +65,30 @@ class TransformData:
     def save_csv(self, df, path):
         df.to_csv(path, index=False)
    
+if __name__ == "__main__":
+    # Defina sua URI correta aqui
+    uri = MONGODB_URI
+    db_name = "db_produtos_desafio"
+    col_name = "produtos"
+
+    # Criação do objeto e conexão com MongoDB
+    transformador = TransformData(uri, db_name, col_name)
+    transformador.connect()
+    transformador.create_connect_db()
+    transformador.create_connect_collection()
+
+    # Renomeando colunas
+    transformador.rename_column("lat", "Latitude")
+    transformador.rename_column("lon", "Longitude")
+
+    # Salvando dados da categoria livros
+    livros = transformador.select_category("livros")
+    df_livros = transformador.create_dataframe(livros)
+    transformador.format_date(df_livros)
+    transformador.save_csv(df_livros, "../data_teste/tb_livros.csv")
+
+    # Salvando produtos vendidos a partir de 2021
+    produtos = transformador.make_regex("/202[1-9]")
+    df_produtos = transformador.create_dataframe(produtos)
+    transformador.format_date(df_produtos)
+    transformador.save_csv(df_produtos, "../data_teste/tb_produtos.csv")
